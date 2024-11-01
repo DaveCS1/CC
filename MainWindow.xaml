@@ -1,0 +1,50 @@
+﻿<Window x:Class="CodeCleanUp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CodeCleanUp"
+        xmlns:avaloniaEdit1="http://icsharpcode.net/sharpdevelop/avalonedit"
+        mc:Ignorable="d"
+        Title="CodeCleanUp" Height="768" Width="1024">
+    <Grid>
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="File">
+                    <MenuItem Header="Open" Click="OpenFile_Click" />
+                    <!-- Add other menu items as needed -->
+                </MenuItem>
+                <MenuItem Header="Tools">
+                    <MenuItem Header="Check Code" Click="CleanCode_Click" />
+                </MenuItem>
+            </Menu>
+            <TabControl>
+                <TabItem Header="Code From File">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="3*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <avaloniaEdit1:TextEditor x:Name="avalonEditor" ShowLineNumbers="True" Grid.Row="0" SyntaxHighlighting="VB" />
+                        <TabControl Grid.Row="1">
+                            <TabItem Header="Overview" >
+                                <TextBox x:Name="avalonEditorComments" 
+                                         IsReadOnly="True"
+                                         MouseDoubleClick="AvalonEditorComments_MouseDoubleClick"/>
+                            </TabItem>
+                            <TabItem Header="(Later)Can Use Ternary" >
+                                <avaloniaEdit1:TextEditor x:Name="avalonEditorOutPutTernary" SyntaxHighlighting="VB" />
+                            </TabItem>
+                            <TabItem Header="(Later)String Interpolation">
+                                <avaloniaEdit1:TextEditor x:Name="avalonEditorOutPutStringInterpolation" SyntaxHighlighting="VB" />
+                            </TabItem>
+                            <TabItem Header="(Later)Use Class Initialization" />
+                        </TabControl>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Paste Code" />
+                <TabItem Header="-" />
+            </TabControl>
+        </DockPanel>
+    </Grid>
+</Window>
